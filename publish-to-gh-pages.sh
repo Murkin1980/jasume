@@ -8,4 +8,4 @@ resume export index.html
 git add index.html
 git commmit -m "Deploy at `date +"%Y-%m-%d %H:%M"`"
 
-git push origin gh-pages
+git push --force --quiet "https://${GITHUB_TOKEN}@{GITHUB_REPO}.git" master:gh-pages
