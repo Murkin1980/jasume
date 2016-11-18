@@ -3,11 +3,14 @@
 git config --global user.name ${GITHUB_NAME}
 git config --global user.email ${GITHUB_EMAIL}
 
-# create a new branch without any commit. It keeps the index and the working tree files intact
-git checkout --orphan gh-pages
+# clone the gh-pages branch
+git clone -b gh-pages "https://${GITHUB_TOKEN}@${GITHUB_REPO}.git" public
 
 resume export index.html
+mv index.html public/
+cd public
+
 git add index.html
 git commit -m "Deploy at `date +"%Y-%m-%d %H:%M"`"
 
-git push --force --quiet "https://${GITHUB_TOKEN}@${GITHUB_REPO}.git" gh-pages
+git push origin gh-pages --force
